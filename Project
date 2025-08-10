@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Madeira Stay Guide — Guia digital para hóspedes</title>
+  <meta name="description" content="Guia digital para hóspedes na Madeira: roteiros, restaurantes, trilhos e mapa interativo. Atualizável, mobile-first e pronto a partilhar.">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.madeirastayguide.pt/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Madeira Stay Guide — Guia digital para hóspedes">
+  <meta property="og:description" content="Roteiros, restaurantes, trilhos e mapa interativo para a tua estadia na Madeira.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.madeirastayguide.pt/">
+  <meta property="og:image" content="https://www.madeirastayguide.pt/og-image.jpg">
+  <meta property="og:locale" content="pt_PT">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Madeira Stay Guide — Guia digital para hóspedes">
+  <meta name="twitter:description" content="Mapa interativo, dicas locais e roteiros prontos.">
+  <meta name="twitter:image" content="https://www.madeirastayguide.pt/og-image.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+
+  <!-- Fonte -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand:#0E6BA8;
+      --brand-dark:#0A507D;
+      --gold:#C9A227;
+      --text:#1a1a1a;
+      --muted:#6b7280;
+      --bg:#ffffff;
+      --bg-alt:#f7fafc;
+      --radius:14px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --maxw:1120px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg)}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{color:var(--brand-dark)}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;background:#fff;border-bottom:1px solid #eef2f7;z-index:20}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:36px;width:auto}
+    .brand .title{font-weight:700}
+    .menu{display:flex;gap:18px}
+    .menu a{color:#374151;font-weight:600}
+    .cta{display:inline-block;background:var(--brand);color:#fff;padding:12px 18px;border-radius:12px;font-weight:700;box-shadow:var(--shadow)}
+    .cta:hover{background:var(--brand-dark)}
+    .mobile-toggle{display:none;background:none;border:none;font-size:28px}
+    @media (max-width:768px){
+      .menu{display:none;position:absolute;top:64px;left:0;right:0;background:#fff;border-bottom:1px solid #eef2f7;flex-direction:column;padding:16px}
+      .menu.open{display:flex}
+      .mobile-toggle{display:block}
+    }
+
+    .hero{padding:64px 0;background:linear-gradient(180deg,#ffffff 0%, #f5fbff 100%)}
+    .hero-inner{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    .hero h1{font-size:40px;line-height:1.1;margin:0 0 12px}
+    .hero p{color:var(--muted);font-size:18px;margin:0 0 24px}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 24px}
+    .badge{font-size:13px;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:8px 12px}
+    .card{background:#fff;border:1px solid #eef2f7;border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    @media (max-width:980px){.hero-inner{grid-template-columns:1fr}}
+
+    section{padding:56px 0}
+    .section-title{font-size:28px;margin:0 0 10px}
+    .section-sub{color:var(--muted);margin:0 0 24px}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:980px){.grid.cols-3,.grid.cols-2{grid-template-columns:1fr}}
+
+    .feature{display:flex;gap:14px}
+    .feature .icon{height:42px;width:42px;border-radius:10px;background:var(--bg-alt);display:flex;align-items:center;justify-content:center;font-size:22px}
+    .feature .text strong{display:block;margin-bottom:6px}
+
+    .map-wrap{border:1px solid #e5e7eb;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .map-wrap iframe{width:100%;min-height:420px;border:0}
+
+    footer{padding:36px 0;background:#0b1220;color:#e5e7eb}
+    footer a{color:#f3f4f6}
+    .footer-top{display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .sponsor{color:#9ca3af;font-size:14px}
+    .disclaimer{font-size:13px;color:#9ca3af;margin-top:10px}
+    .btn-outline{display:inline-block;border:1px solid #d1d5db;padding:10px 14px;border-radius:10px;font-weight:600}
+    .btn-outline:hover{border-color:#9ca3af}
+  </style>
+
+  <!-- Schema.org Organization -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Madeira Stay Guide",
+    "url":"https://www.madeirastayguide.pt/",
+    "logo":"https://www.madeirastayguide.pt/logo.png",
+    "sameAs":[]
+  }
+  </script>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <img src="logo.png" alt="Madeira Stay Guide logo">
+      <span class="title">Madeira Stay Guide</span>
+    </div>
+    <nav>
+      <button class="mobile-toggle" aria-label="Menu" onclick="document.querySelector('.menu').classList.toggle('open')">☰</button>
+      <div class="menu" id="menu">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#contacto">Contactos</a>
+        <a class="cta" href="https://notion.so/TEU_LINK_DO_GUIA" target="_blank" rel="noopener">Abrir Guia</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="badges">
+          <span class="badge">Digital • Mobile‑first</span>
+          <span class="badge">Atualizável</span>
+          <span class="badge">Mapa interativo</span>
+        </div>
+        <h1>O guia digital para hóspedes na Madeira</h1>
+        <p>Roteiros prontos, restaurantes de confiança, trilhos populares e um mapa interativo para explorar — tudo num só link. Ideal para alojamentos locais e hotéis.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <a class="cta" href="https://notion.so/TEU_LINK_DO_GUIA" target="_blank" rel="noopener">Abrir Guia</a>
+          <a class="btn-outline" href="#como-funciona">Como funciona</a>
+        </div>
+        <p class="disclaimer">Algumas recomendações podem ser patrocinadas. Mantemos opções não patrocinadas para garantir imparcialidade.</p>
+      </div>
+      <div class="card">
+        <strong>Resumo rápido</strong>
+        <ul>
+          <li>Link único para hóspedes (QR code incluído)</li>
+          <li>PT/EN num só guia</li>
+          <li>Integração com Google My Maps</li>
+          <li>Atualizações em tempo real</li>
+        </ul>
+        <div style="height:12px"></div>
+        <strong>Para alojamentos</strong>
+        <ul>
+          <li>Menos perguntas repetidas</li>
+          <li>Melhor experiência do hóspede</li>
+          <li>Upsell com parceiros locais</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="container">
+      <h2 class="section-title">Como funciona</h2>
+      <p class="section-sub">Três passos para entregar um guia profissional aos teus hóspedes.</p>
+      <div class="grid cols-3">
+        <div class="feature card">
+          <div class="icon">🧭</div>
+          <div class="text">
+            <strong>1) Personaliza o template</strong>
+            <span>Adiciona Wi‑Fi, regras da casa, contactos e os teus locais preferidos no nosso template.</span>
+          </div>
+        </div>
+        <div class="feature card">
+          <div class="icon">🔗</div>
+          <div class="text">
+            <strong>2) Partilha por link/QR</strong>
+            <span>Cria um QR code e coloca-o no alojamento. Os hóspedes acedem no telemóvel.</span>
+          </div>
+        </div>
+        <div class="feature card">
+          <div class="icon">🗺️</div>
+          <div class="text">
+            <strong>3) Explora com o mapa</strong>
+            <span>Integra o Google My Maps com restaurantes, miradouros e trilhos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios" style="background:var(--bg-alt)">
+    <div class="container">
+      <h2 class="section-title">Benefícios</h2>
+      <p class="section-sub">Para hóspedes e anfitriões.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <strong>Experiência 5★</strong>
+          <p>Informação útil, clara e sempre à mão. Conteúdos bilíngues e dicas locais.</p>
+        </div>
+        <div class="card">
+          <strong>Menos fricção</strong>
+          <p>Menos mensagens repetidas sobre Wi‑Fi, check‑out ou onde comer.</p>
+        </div>
+        <div class="card">
+          <strong>Monetização com parceiros</strong>
+          <p>Selo “Patrocinado” transparente e vantagens exclusivas para os hóspedes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mapa">
+    <div class="container">
+      <h2 class="section-title">Mapa interativo</h2>
+      <p class="section-sub">Abre o mapa completo ou explora abaixo.</p>
+      <p>
+        <a class="cta" href="https://www.google.com/maps/d/viewer?mid=TEU_ID_DO_MAPA" target="_blank" rel="noopener">Abrir no Google My Maps</a>
+      </p>
+      <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/d/embed?mid=TEU_ID_DO_MAPA" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa Madeira Stay Guide"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="container">
+      <h2 class="section-title">Contactos</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <strong>Fala connosco</strong>
+          <p>Email: <a href="mailto:hello@madeirastayguide.pt">hello@madeirastayguide.pt</a></p>
+          <p>WhatsApp: <a href="https://wa.me/351XXXXXXX" target="_blank" rel="noopener">+351 XXX XXX XXX</a></p>
+          <p>Instagram: <a href="https://instagram.com/madeirastayguide" target="_blank" rel="noopener">@madeirastayguide</a></p>
+        </div>
+        <div class="card">
+          <strong>Para alojamentos</strong>
+          <p>Queres o teu guia personalizado? Entra em contacto para começarmos ainda hoje.</p>
+          <a class="cta" href="mailto:hello@madeirastayguide.pt">Quero o meu guia</a>
+        </div>
+      </div>
+      <p class="disclaimer">Transparência: conteúdos patrocinados são assinalados e não influenciam as recomendações editoriais.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div style="display:flex;align-items:center;gap:10px">
+        <img src="logo.png" alt="logo" style="height:28px;width:auto">
+        <span>Madeira Stay Guide</span>
+      </div>
+      <div class="sponsor">Parceiros identificados com selo dourado</div>
+    </div>
+    <div style="height:10px"></div>
+    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px">
+      <small>© <span id="y"></span> Madeira Stay Guide. Todos os direitos reservados.</small>
+      <small><a href="#contacto">Contacto</a> • <a href="#mapa">Mapa</a></small>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
